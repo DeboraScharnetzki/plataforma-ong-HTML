@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="pt-BR">
+<head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Admin - Dashboard</title><link rel="stylesheet" href="style.css"></head>
+<body>
+<header><div class="logo"><div class="mark">CV</div><div><strong>Conecta Voluntário — Admin</strong></div></div><nav class="nav"><a class="btn secondary" href="index.html">Sair</a></nav></header>
+<main class="container">
+  <div class="card">
+    <h1>Painel do Administrador</h1>
+    <p class="small">Ações simuladas para gerenciamento.</p>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px">
+      <button class="btn action-btn" data-act="create-project">Criar Projeto (simulado)</button>
+      <button class="btn action-btn" data-act="view-reports">Ver Relatórios</button>
+      <button class="btn action-btn" data-act="manage-users">Gerenciar Usuários</button>
+    </div>
+    <p id="dashMsg" class="small" style="margin-top:12px"></p>
+    <h3 style="margin-top:18px">Projetos cadastrados (simulado)</h3>
+    <div id="listProjects"></div>
+  </div>
+</main>
+<div class="footer">© Conecta Voluntário</div>
+<script src="script.js"></script>
+<script>
+  // show projects list
+  const pList = document.getElementById('listProjects');
+  const projects = JSON.parse(localStorage.getItem('cv_projects')||'[]');
+  if(projects.length===0) pList.innerHTML = '<div class="small">Nenhum projeto (use Criar Projeto)</div>';
+  else pList.innerHTML = projects.map(p=>'<div class="card"><strong>'+p.title+'</strong><div class="small">Criado em '+new Date(p.created).toLocaleString()+'</div></div>').join('');
+</script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="pt-BR">
+<head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Doador - Dashboard</title><link rel="stylesheet" href="style.css"></head>
+<body>
+<header><div class="logo"><div class="mark">CV</div><div><strong>Conecta Voluntário — Doador</strong></div></div><nav class="nav"><a class="btn secondary" href="index.html">Sair</a></nav></header>
+<main class="container">
+  <div class="card">
+    <h1>Área do Doador</h1>
+    <p class="small">Acompanhe suas doações e relatórios (simulado).</p>
+    <div style="margin-top:12px">
+      <button class="btn action-btn" data-act="donate">Doar (simulado)</button>
+      <button class="btn action-btn" data-act="view-receipts">Ver Recibos</button>
+    </div>
+    <p id="dashMsg" class="small" style="margin-top:12px"></p>
+    <h3 style="margin-top:18px">Doações Recentes (simulado)</h3>
+    <div id="listDon"></div>
+  </div>
+</main>
+<div class="footer">© Conecta Voluntário</div>
+<script src="script.js"></script>
+<script>
+  const don = JSON.parse(localStorage.getItem('cv_donations')||'[]');
+  const dEl = document.getElementById('listDon');
+  if(don.length===0) dEl.innerHTML='<div class="small">Nenhuma doação registrada.</div>';
+  else dEl.innerHTML = don.map(d=>'<div class="card"><strong>R$ '+(d.amount||0)+'</strong><div class="small">'+new Date(d.date).toLocaleString()+'</div></div>').join('');
+</script>
+</body>
+</html>

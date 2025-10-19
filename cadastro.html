@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="pt-BR">
+<head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Cadastro - Conecta Voluntário</title><link rel="stylesheet" href="style.css"></head>
+<body>
+<header>
+  <div class="logo"><div class="mark">CV</div><div><strong>Conecta Voluntário</strong></div></div>
+  <nav class="nav"><a class="btn secondary" href="index.html">Voltar</a><a class="btn" href="login.html">Login</a></nav>
+</header>
+<main class="container">
+  <div class="card">
+    <h1>Cadastro</h1>
+    <form id="formCadastro">
+      <label>Tipo de usuário</label>
+      <select name="tipoUsuario" id="tipoUsuario" required>
+        <option value="">Selecione...</option>
+        <option value="voluntario">Voluntário</option>
+        <option value="doador">Doador</option>
+        <option value="administrador">Administrador</option>
+      </select>
+      <label>Nome completo</label><input name="nome" type="text" required>
+      <label>E-mail</label><input name="email" type="email" required>
+      <label>Senha</label><input name="senha" type="password" required>
+      <label>Confirmar senha</label><input name="senha2" type="password" required>
+      <div style="margin-top:10px"><button class="btn" type="submit">Cadastrar</button></div>
+    </form>
+    <p id="msgCadastro" class="small" style="margin-top:12px"></p>
+  </div>
+</main>
+<div class="footer">© Conecta Voluntário</div>
+<script src="script.js"></script>
+</body>
+</html>

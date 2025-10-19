@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="pt-BR">
+<head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Voluntário - Dashboard</title><link rel="stylesheet" href="style.css"></head>
+<body>
+<header><div class="logo"><div class="mark">CV</div><div><strong>Conecta Voluntário — Voluntário</strong></div></div><nav class="nav"><a class="btn secondary" href="index.html">Sair</a></nav></header>
+<main class="container">
+  <div class="card">
+    <h1>Área do Voluntário</h1>
+    <p class="small">Histórico e oportunidades.</p>
+    <div style="margin-top:12px">
+      <button class="btn action-btn" data-act="apply-project">Candidatar-se a Projeto (simulado)</button>
+      <button class="btn action-btn" data-act="download-certificate">Obter Certificado (simulado)</button>
+    </div>
+    <p id="dashMsg" class="small" style="margin-top:12px"></p>
+    <h3 style="margin-top:18px">Histórico de Participações (simulado)</h3>
+    <div id="histVol"></div>
+  </div>
+</main>
+<div class="footer">© Conecta Voluntário</div>
+<script src="script.js"></script>
+<script>
+  const hist = JSON.parse(localStorage.getItem('cv_apps')||'[]');
+  const hEl = document.getElementById('histVol');
+  if(hist.length===0) hEl.innerHTML='<div class="small">Nenhuma participação registrada.</div>';
+  else hEl.innerHTML = hist.map(a=>'<div class="card"><strong>'+a.project+'</strong><div class="small">'+new Date(a.date).toLocaleString()+'</div></div>').join('');
+</script>
+</body>
+</html>

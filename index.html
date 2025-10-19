@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Conecta Voluntário</title>
+<link rel="stylesheet" href="style.css">
+<meta name="description" content="Plataforma institucional da ONG Conecta Voluntário.">
+</head>
+<body>
+<header>
+  <div class="logo"><div class="mark">CV</div><div><strong>Conecta Voluntário</strong><div class="small">Transparência • Voluntariado • Impacto</div></div></div>
+  <nav class="nav">
+    <a class="btn secondary" href="quemsomos.html">Quem Somos</a>
+    <a class="btn secondary" href="faleconosco.html">Fale Conosco</a>
+    <a class="btn" href="cadastro.html">Cadastro</a>
+    <a class="btn" href="login.html">Login</a>
+  </nav>
+</header>
+<main class="container">
+  <div class="grid">
+    <aside class="card">
+      <div style="font-weight:700;margin-bottom:8px">Área</div>
+      <div class="menu">
+        <button onclick="location.href='index.html'">Início</button>
+        <button onclick="location.href='quemsomos.html'">Quem Somos</button>
+        <button onclick="location.href='cadastro.html'">Cadastro</button>
+        <button onclick="location.href='faleconosco.html'">Fale Conosco</button>
+      </div>
+    </aside>
+    <section>
+      <div class="card">
+        <h1>Bem-vindo à Conecta Voluntário</h1>
+        <p class="small">Conectamos pessoas a causas, promovendo voluntariado e impacto social com transparência.</p>
+        <div class="kpi" style="margin-top:14px">
+          <div class="item kpi"><div class="small">Projetos ativos</div><div style="font-weight:700;font-size:20px" id="k_projects">--</div></div>
+          <div class="item kpi"><div class="small">Voluntários</div><div style="font-weight:700;font-size:20px" id="k_vols">--</div></div>
+          <div class="item kpi"><div class="small">Doações (R$)</div><div style="font-weight:700;font-size:20px" id="k_don">--</div></div>
+        </div>
+      </div>
+      <div class="card">
+        <h2>Projetos em destaque</h2>
+        <div class="gallery">
+          <img src="https://picsum.photos/seed/p1/400/300" alt="projeto1">
+          <img src="https://picsum.photos/seed/p2/400/300" alt="projeto2">
+          <img src="https://picsum.photos/seed/p3/400/300" alt="projeto3">
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+<div class="footer">© Conecta Voluntário</div>
+<script src="script.js"></script>
+<script>
+  // show simple KPIs
+  const projects = JSON.parse(localStorage.getItem('cv_projects')||'[]');
+  const donations = JSON.parse(localStorage.getItem('cv_donations')||'[]');
+  document.getElementById('k_projects').textContent = projects.length;
+  document.getElementById('k_vols').textContent = (JSON.parse(localStorage.getItem('cv_users')||'[]').filter(u=>u.tipo==='voluntario').length);
+  document.getElementById('k_don').textContent = donations.reduce((s,d)=>s+(d.amount||0),0);
+</script>
+</body>
+</html>
