@@ -1,0 +1,532 @@
+Página de Login 
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login | Conecta Voluntário</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      background-color: #fefefe;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px;
+    }
+    .login-container {
+      background: #fff;
+      max-width: 400px;
+      width: 100%;
+      border-radius: 12px;
+      padding: 30px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      margin-top: 60px;
+    }
+    h1 {
+      text-align: center;
+      color: #d16ba5;
+      margin-bottom: 20px;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+    button {
+      background-color: #d16ba5;
+      color: #fff;
+      border: none;
+      padding: 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      width: 100%;
+      font-size: 1em;
+    }
+    button:hover {
+      background-color: #b64c8a;
+    }
+    .mensagem {
+      text-align: center;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <h1>Login</h1>
+    <input type="email" id="email" placeholder="E-mail" required>
+    <input type="password" id="senha" placeholder="Senha" required>
+    <button id="btnLogin">Entrar</button>
+    <p class="mensagem" id="mensagem"></p>
+    <p style="text-align:center; margin-top:10px;">
+      <a href="cadastro.html">Não tem conta? Cadastre-se</a>
+    </p>
+  </div>
+
+  <script>
+    const btnLogin = document.getElementById('btnLogin');
+    const msg = document.getElementById('mensagem');
+
+    btnLogin.addEventListener('click', () => {
+      const email = document.getElementById('email').value.trim();
+      const senha = document.getElementById('senha').value.trim();
+      const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+
+      const usuario = usuarios.find(u => u.email === email);
+
+      if (!usuario) {
+        msg.style.color = 'red';
+        msg.textContent = 'Usuário não encontrado.';
+        return;
+      }
+
+      // Login simulado (sem senha real por segurança)
+      msg.style.color = 'green';
+      msg.textContent = `Bem-vindo, ${usuario.nome}!`;
+      setTimeout(() => window.location.href = 'index.html', 1500);
+    });
+  </script>
+</body>
+</html>
+
+
+
+Fale Conosco
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fale Conosco | Conecta Voluntário</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fff;
+      padding: 20px;
+    }
+    .container {
+      max-width: 600px;
+      margin: 40px auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    h1 {
+      color: #d16ba5;
+      text-align: center;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+    button {
+      background-color: #d16ba5;
+      color: #fff;
+      border: none;
+      padding: 12px;
+      border-radius: 8px;
+      width: 100%;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #b64c8a;
+    }
+    .mensagem {
+      text-align: center;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Fale Conosco</h1>
+    <form id="formContato">
+      <input type="text" id="nome" placeholder="Seu nome" required>
+      <input type="email" id="email" placeholder="Seu e-mail" required>
+      <textarea id="mensagem" placeholder="Sua mensagem" rows="5" required></textarea>
+      <button type="submit">Enviar</button>
+    </form>
+    <p class="mensagem" id="msg"></p>
+  </div>
+
+  <script>
+    const form = document.getElementById('formContato');
+    const msg = document.getElementById('msg');
+
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      msg.style.color = 'green';
+      msg.textContent = 'Mensagem enviada com sucesso! Obrigado pelo contato.';
+      form.reset();
+    });
+  </script>
+</body>
+</html>
+
+
+Quem somos
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quem Somos | Conecta Voluntário</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      padding: 20px;
+      background-color: #fff;
+      color: #333;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    h1 {
+      color: #d16ba5;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .missao, .visao, .valores {
+      background: #ffe6f0;
+      padding: 20px;
+      margin: 15px 0;
+      border-radius: 10px;
+    }
+    .equipe {
+      margin-top: 30px;
+    }
+    .equipe img {
+      width: 100px;
+      border-radius: 50%;
+      margin-right: 15px;
+    }
+    .membro {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Quem Somos</h1>
+    <p>Somos uma organização sem fins lucrativos dedicada a conectar pessoas, promover o voluntariado e fortalecer ações sociais em todo o Brasil.</p>
+
+    <div class="missao">
+      <h2>Missão</h2>
+      <p>Promover o engajamento social e conectar voluntários a projetos que transformam vidas.</p>
+    </div>
+
+    <div class="visao">
+      <h2>Visão</h2>
+      <p>Ser referência em voluntariado digital e impacto social sustentável.</p>
+    </div>
+
+    <div class="valores">
+      <h2>Valores</h2>
+      <ul>
+        <li>Solidariedade</li>
+        <li>Transparência</li>
+        <li>Inclusão</li>
+        <li>Respeito</li>
+        <li>Comprometimento</li>
+      </ul>
+    </div>
+
+    <div class="equipe">
+      <h2>Equipe</h2>
+      <div class="membro">
+        <img src="https://picsum.photos/100?random=1" alt="Diretora">
+        <p><strong>Maria Silva</strong> — Diretora Executiva</p>
+      </div>
+      <div class="membro">
+        <img src="https://picsum.photos/100?random=2" alt="Coordenador">
+        <p><strong>João Santos</strong> — Coordenador de Projetos</p>
+      </div>
+      <div class="membro">
+        <img src="https://picsum.photos/100?random=3" alt="Comunicacao">
+        <p><strong>Ana Costa</strong> — Comunicação e Engajamento</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+
+
+Cadastro 
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Página de cadastro de usuários da ONG Conecta Voluntário.">
+  <title>Cadastro | Conecta Voluntário</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      background-color: #fefefe;
+      color: #333;
+      font-family: 'Arial', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .cadastro-container {
+      background: #fff;
+      width: 100%;
+      max-width: 500px;
+      border-radius: 12px;
+      padding: 30px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      margin-top: 50px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #d16ba5;
+      margin-bottom: 20px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    label {
+      font-weight: bold;
+    }
+
+    input, select {
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      width: 100%;
+    }
+
+    button {
+      background-color: #d16ba5;
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1em;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #b64c8a;
+    }
+
+    .mensagem {
+      margin-top: 15px;
+      text-align: center;
+      font-weight: bold;
+      color: #4CAF50;
+    }
+  </style>
+</head>
+<body>
+  <div class="cadastro-container">
+    <h1>Cadastro de Usuário</h1>
+    <form id="formCadastro">
+      <label for="tipoUsuario">Tipo de Usuário:</label>
+      <select id="tipoUsuario" name="tipoUsuario" required>
+        <option value="">Selecione...</option>
+        <option value="voluntario">Voluntário</option>
+        <option value="doador">Doador</option>
+        <option value="administrador">Administrador</option>
+      </select>
+
+      <label for="nome">Nome Completo:</label>
+      <input type="text" id="nome" name="nome" placeholder="Seu nome completo" required>
+
+      <label for="email">E-mail:</label>
+      <input type="email" id="email" name="email" placeholder="seuemail@exemplo.com" required>
+
+      <label for="senha">Senha:</label>
+      <input type="password" id="senha" name="senha" placeholder="Crie uma senha" required>
+
+      <label for="confirmarSenha">Confirmar Senha:</label>
+      <input type="password" id="confirmarSenha" name="confirmarSenha" placeholder="Repita a senha" required>
+
+      <button type="submit">Cadastrar</button>
+    </form>
+
+    <p class="mensagem" id="mensagem"></p>
+  </div>
+
+  <script>
+    const form = document.getElementById('formCadastro');
+    const msg = document.getElementById('mensagem');
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const nome = document.getElementById('nome').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const senha = document.getElementById('senha').value;
+      const confirmarSenha = document.getElementById('confirmarSenha').value;
+      const tipo = document.getElementById('tipoUsuario').value;
+
+      if (!tipo) {
+        msg.style.color = 'red';
+        msg.textContent = 'Por favor, selecione o tipo de usuário.';
+        return;
+      }
+
+      if (senha !== confirmarSenha) {
+        msg.style.color = 'red';
+        msg.textContent = 'As senhas não coincidem.';
+        return;
+      }
+
+      // Simulação de armazenamento local
+      const usuario = { nome, email, tipo };
+      let usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+      usuarios.push(usuario);
+      localStorage.setItem('usuarios', JSON.stringify(usuarios));
+
+      form.reset();
+      msg.style.color = '#4CAF50';
+      msg.textContent = 'Cadastro realizado com sucesso!';
+    });
+  </script>
+</body>
+</html>
+
+
+--- COMPLETO ----
+
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Conecta Voluntário — ONG Institucional</title>
+  <meta name="description" content="Portal institucional completo da ONG Conecta Voluntário, com áreas de projetos, voluntariado, captação e transparência." />
+  <meta name="keywords" content="ONG, voluntariado, doações, projetos sociais, transparência, impacto social" />
+  <style>
+    :root {
+      --bg: #faf7f9;
+      --card: #fff;
+      --accent: #d97b9f;
+      --accent-2: #f3cbd1;
+      --muted: #6b6b6b;
+      --radius: 12px;
+      --shadow: 0 6px 18px rgba(18,18,18,0.06);
+      font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:#222;line-height:1.6}
+    header{background:linear-gradient(90deg,var(--card),#fff);padding:12px 24px;display:flex;align-items:center;box-shadow:var(--shadow);position:sticky;top:0;z-index:50;flex-wrap:wrap}
+    .logo{display:flex;align-items:center;gap:10px}
+    .logo .mark{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700}
+    .nav{margin-left:auto;display:flex;gap:8px;align-items:center}
+    .btn{background:var(--accent);color:#fff;padding:8px 14px;border-radius:10px;border:0;cursor:pointer;transition:.2s}
+    .btn:hover{opacity:.85}
+    .btn.link{background:transparent;color:var(--accent);border:1px solid rgba(217,123,159,0.3)}
+    .container{max-width:1200px;margin:24px auto;padding:0 18px}
+    .grid{display:grid;grid-template-columns:280px 1fr;gap:20px}
+    .sidebar{background:var(--card);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow)}
+    .menu button{background:transparent;border:0;width:100%;text-align:left;padding:10px;border-radius:8px;cursor:pointer;color:#333}
+    .menu button.active,.menu button:hover{background:rgba(217,123,159,0.1)}
+    .card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px;margin-bottom:12px}
+    h1,h2,h3{margin-top:0}
+    .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px}
+    .gallery img{width:100%;height:140px;object-fit:cover;border-radius:8px}
+    footer{padding:20px;text-align:center;color:var(--muted)}
+    @media(max-width:860px){.grid{grid-template-columns:1fr}.nav{margin-left:0;width:100%;justify-content:center;margin-top:6px}}
+  </style>
+</head>
+<body>
+<header>
+  <div class="logo">
+    <div class="mark">CV</div>
+    <div><strong>Conecta Voluntário</strong><br><small style="color:var(--muted)">ONG - presença institucional</small></div>
+  </div>
+  <nav class="nav">
+    <select id="roleSelect">
+      <option value="visitor">Área Institucional</option>
+      <option value="projects">Gestão de Projetos</option>
+      <option value="volunteers">Engajamento de Voluntários</option>
+      <option value="donations">Captação de Recursos</option>
+      <option value="communication">Comunicação e Transparência</option>
+    </select>
+    <button class="btn" id="applyBtn">Acessar</button>
+  </nav>
+</header>
+<main class="container">
+  <div class="grid">
+    <aside class="sidebar">
+      <div style="font-weight:700;margin-bottom:10px">Navegação</div>
+      <div id="menu" class="menu"></div>
+    </aside>
+    <section id="content"></section>
+  </div>
+</main>
+<footer>
+  © <span id="year"></span> Conecta Voluntário — Todos os direitos reservados
+</footer>
+<script>
+const year=document.getElementById('year');year.textContent=new Date().getFullYear();
+const menus={
+  visitor:[{k:'home',t:'Início'},{k:'mission',t:'Missão, Visão e Valores'},{k:'history',t:'Histórico e Conquistas'},{k:'team',t:'Equipe e Estrutura'},{k:'transparency',t:'Relatórios de Transparência'}],
+  projects:[{k:'list',t:'Projetos Sociais'},{k:'gallery',t:'Galeria de Mídia'},{k:'impact',t:'Indicadores e Resultados'},{k:'categories',t:'Categorias'}],
+  volunteers:[{k:'portal',t:'Portal de Oportunidades'},{k:'apply',t:'Inscrição e Seleção'},{k:'area',t:'Área do Voluntário'},{k:'certificates',t:'Certificados Digitais'}],
+  donations:[{k:'campaigns',t:'Campanhas de Arrecadação'},{k:'donate',t:'Doações On-line'},{k:'goals',t:'Metas e Progresso'},{k:'reports',t:'Prestação de Contas'}],
+  communication:[{k:'blog',t:'Blog e Notícias'},{k:'newsletter',t:'Newsletter'},{k:'press',t:'Área de Imprensa'},{k:'documents',t:'Documentos Públicos'}]
+}
+const content=document.getElementById('content');
+const menu=document.getElementById('menu');
+let current='visitor';
+function setRole(r){current=r;renderMenu();render('home');}
+function renderMenu(){menu.innerHTML='';menus[current].forEach(m=>{const b=document.createElement('button');b.textContent=m.t;b.onclick=()=>render(m.k);menu.appendChild(b)})}
+function render(view){content.innerHTML='';switch(view){
+  case 'home':content.innerHTML=`<div class='card'><h1>Bem-vindo à Conecta Voluntário</h1><p>Somos uma organização sem fins lucrativos dedicada ao impacto social, transparência e voluntariado responsável.</p><img src='https://picsum.photos/1200/400?random=1' alt='banner institucional' style='width:100%;border-radius:8px;margin-top:8px;'/></div>`;break;
+  case 'mission':content.innerHTML=`<div class='card'><h1>Missão, Visão e Valores</h1><p><strong>Missão:</strong> Promover conexões transformadoras entre pessoas e causas.</p><p><strong>Visão:</strong> Tornar-se referência em voluntariado colaborativo.</p><p><strong>Valores:</strong> Ética, Empatia, Inclusão, Transparência.</p></div>`;break;
+  case 'history':content.innerHTML=`<div class='card'><h1>Histórico e Conquistas</h1><p>Desde 2015, realizamos mais de 200 projetos sociais, beneficiando mais de 10.000 pessoas em diversas comunidades.</p><img src='https://picsum.photos/800/300?random=2' alt='histórico'/></div>`;break;
+  case 'team':content.innerHTML=`<div class='card'><h1>Equipe e Estrutura</h1><p>Nossa equipe multidisciplinar é composta por gestores, educadores e profissionais de tecnologia social.</p><div class='gallery'>${[1,2,3,4].map(i=>`<img src='https://picsum.photos/200/200?random=${i+10}' alt='membro da equipe'>`).join('')}</div></div>`;break;
+  case 'transparency':content.innerHTML=`<div class='card'><h1>Relatórios de Transparência</h1><p>Confira os relatórios financeiros e de impacto social atualizados trimestralmente.</p><a href='#' class='btn link'>Baixar Relatório 2025 (PDF)</a></div>`;break;
+  case 'list':content.innerHTML=`<div class='card'><h1>Projetos Sociais</h1><p>Listagem de projetos detalhados com impacto e voluntários envolvidos.</p></div>`;break;
+  case 'gallery':content.innerHTML=`<div class='card'><h1>Galeria de Fotos e Vídeos</h1><div class='gallery'>${[1,2,3,4,5,6].map(i=>`<img src='https://picsum.photos/300/200?random=${i+20}' alt='projeto'>`).join('')}</div></div>`;break;
+  case 'impact':content.innerHTML=`<div class='card'><h1>Indicadores de Impacto</h1><p>Projetos ativos: 24 | Voluntários: 150 | Recursos aplicados: R$ 320.000</p></div>`;break;
+  case 'categories':content.innerHTML=`<div class='card'><h1>Categorias de Projetos</h1><ul><li>Educação</li><li>Saúde</li><li>Meio Ambiente</li><li>Inclusão Digital</li></ul></div>`;break;
+  case 'portal':content.innerHTML=`<div class='card'><h1>Portal de Oportunidades</h1><p>Encontre vagas de voluntariado compatíveis com seu perfil.</p><img src='https://picsum.photos/800/300?random=30' alt='voluntariado'/></div>`;break;
+  case 'apply':content.innerHTML=`<div class='card'><h1>Inscrição e Seleção</h1><form onsubmit='event.preventDefault();alert("Inscrição enviada!")'><input placeholder='Nome' required><input placeholder='E-mail' required type='email'><select><option>Selecione projeto</option><option>Educação</option><option>Saúde</option></select><button class='btn'>Enviar</button></form></div>`;break;
+  case 'area':content.innerHTML=`<div class='card'><h1>Área do Voluntário</h1><p>Visualize histórico de participações e atividades.</p></div>`;break;
+  case 'certificates':content.innerHTML=`<div class='card'><h1>Certificados Digitais</h1><p>Emita seu certificado de participação.</p><button class='btn'>Gerar Certificado</button></div>`;break;
+  case 'campaigns':content.innerHTML=`<div class='card'><h1>Campanhas de Arrecadação</h1><p>Acompanhe campanhas ativas e contribua para as metas.</p><img src='https://picsum.photos/900/300?random=40' alt='campanha'/></div>`;break;
+  case 'donate':content.innerHTML=`<div class='card'><h1>Doações On-line</h1><form onsubmit='event.preventDefault();alert("Doação registrada!")'><input type='number' min='5' placeholder='Valor (R$)' required><button class='btn'>Doar Agora</button></form></div>`;break;
+  case 'goals':content.innerHTML=`<div class='card'><h1>Metas e Progresso</h1><p>Meta geral: R$ 500.000 | Arrecadado: R$ 320.000</p><progress max='500000' value='320000' style='width:100%'></progress></div>`;break;
+  case 'reports':content.innerHTML=`<div class='card'><h1>Prestação de Contas</h1><p>Relatórios detalhados de aplicação de recursos.</p><a href='#' class='btn link'>Baixar Relatório Financeiro</a></div>`;break;
+  case 'blog':content.innerHTML=`<div class='card'><h1>Blog e Notícias</h1><p>Últimas atualizações e conquistas.</p><article><h3>Nova Parceria Local</h3><p>Firmamos parceria com instituições de ensino para novos projetos.</p></article></div>`;break;
+  case 'newsletter':content.innerHTML=`<div class='card'><h1>Newsletter</h1><p>Cadastre-se para receber novidades.</p><form onsubmit='event.preventDefault();alert("Inscrito!")'><input placeholder='Seu e-mail' type='email' required><button class='btn'>Inscrever</button></form></div>`;break;
+  case 'press':content.innerHTML=`<div class='card'><h1>Área de Imprensa</h1><p>Comunicados oficiais e releases disponíveis.</p></div>`;break;
+  case 'documents':content.innerHTML=`<div class='card'><h1>Documentos Públicos</h1><ul><li>Estatuto Social (PDF)</li><li>Certidões Negativas</li><li>Política de Privacidade</li></ul></div>`;break;
+}}
+document.getElementById('applyBtn').onclick=()=>{setRole(document.getElementById('roleSelect').value)};setRole('visitor');
+</script>
+</body>
+</html>
